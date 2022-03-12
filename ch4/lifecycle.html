@@ -1,0 +1,73 @@
+ <html>
+<body>
+ <!-- ... other HTML ... -->
+<!-- ... existing HTML ... -->
+
+<div id="root"></div>
+
+<!-- ... existing HTML ... -->
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- Load our React component. -->
+  <script type="text/babel">
+     class ChildComponent extends React.Component {
+        static propTypes = {
+          name: PropTypes.string
+        }
+        static defaultProps = (function() {
+          console.log('ChildComponent : defaultProps')
+          return {}
+        })()
+        constructor(props) {
+          super(props)
+          console.log('ChildComponent: state')
+        }
+        render() {
+          console.log('ChildComponent: render')
+          return (
+          <div>
+            Name: {this.props.name}
+          </div>
+          )
+        }
+      }
+
+
+class ParentComponent extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        name: ''
+      }
+      this.onInputChange = this.onInputChange.bind(this)
+    }
+    onInputChange(e) {
+      this.setState({ text: e.target.value })
+    }
+    render() {
+      console.log('ParentComponent: render')
+      return [
+      <h2 key="h2">Learn about rendering and lifecycle methods!</h2>,
+      <input key="input" value={this.state.text}
+      onChange={this.onInputChange} />,
+      <ChildComponent key="ChildComponent" name={this.state.text} />
+      ]
+    }
+}
+
+   ReactDOM.render(<ParentComponent />, document.getElementById("root"))
+
+
+
+
+
+  </script>
+  
+
+</body>
+<html>

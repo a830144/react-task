@@ -1,0 +1,61 @@
+ <html>
+<body>
+ <!-- ... other HTML ... -->
+<!-- ... existing HTML ... -->
+
+<div id="root"></div>
+
+<!-- ... existing HTML ... -->
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- Load our React component. -->
+  <script type="text/babel">
+    'use strict';
+
+const e = React.createElement;
+class ShallowMerge extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        name: 'Mark', // 1
+        colors: {
+          favorite: '',
+        }
+      }
+    }
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+  onButtonClick() {
+    this.setState(() => ({
+      user: { // 2
+        colors: {
+          favorite: 'blue'
+        }
+      }
+    }));
+  }
+  render() {
+    return (
+      <div>
+      <h1>My favorite color is {this.state.user.colors.favorite} and my
+      name is {this.state.user.name}</h1>
+      <button onClick={this.onButtonClick}>show the color!</button>
+      </div>
+    )
+  }
+}
+const domContainer = document.querySelector('#root');
+ReactDOM.render(e(ShallowMerge), domContainer);
+
+
+
+  </script>
+  
+
+</body>
+<html>
