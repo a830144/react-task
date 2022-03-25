@@ -17,30 +17,43 @@
     'use strict';
 
 const e = React.createElement;
-class Secret extends React.Component{
+class Bubble extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      name: 'top secret!',
     };
-    this.onButtonClick = this.onButtonClick.bind(this);
+    //this.onButtonClick = this.onButtonClick.bind(this);
   }
-  onButtonClick() {
-    this.setState(() => ({
-      name: 'Jim'
-    }));
-  }
+  handleLunch () {
+        console.log("handle lunch!");
+    }
+
+    handleCookEggs() {
+        console.log("cooking eggs...");
+    }
+
+    handleCookRice() {
+        console.log("cooking rice...");
+    }
+
+    handleCookChicken() {
+        console.log("cooking chicken...");
+    }
+
+
   render() {
     return (
-      <div>
-      <h1>My name is {this.state.name}</h1>
-      <button onClick={this.onButtonClick}>reveal the secret!</button>
-      </div>
+      <div className="im-a-parent" onClick={this.handleLunch}>
+                <button className="im-a-child" onClick={this.handleCookEggs}>Cook Eggs</button>
+                <button className="im-a-child" onClick={this.handleCookRice}>Cook Rice</button>
+                <button className="im-a-child" onClick={this.handleCookChicken}>Cook Chicken</button>
+            </div>
+
     )
   }
 }
 const domContainer = document.querySelector('#root');
-ReactDOM.render(e(Secret), domContainer);
+ReactDOM.render(e(Bubble), domContainer);
 
 
 
