@@ -25,20 +25,23 @@ class Bubble extends React.Component{
     //this.onButtonClick = this.onButtonClick.bind(this);
   }
   handleLunch () {
-        console.log("handle lunch!");
-    }
+      console.log("handle lunch!");
+  }
 
-    handleCookEggs() {
-        console.log("cooking eggs...");
-    }
+  handleCookEggs(event) {
+      event.stopPropagation(); // USED HERE!
+      console.log(event.isPropagationStopped());
+      console.log(event.target.innerText);
+      console.log("cooking eggs...");
+  }
 
-    handleCookRice() {
-        console.log("cooking rice...");
-    }
+  handleCookRice() {
+      console.log("cooking rice...");
+  }
 
-    handleCookChicken() {
-        console.log("cooking chicken...");
-    }
+  handleCookChicken() {
+      console.log("cooking chicken...");
+  }
 
 
   render() {
@@ -55,7 +58,7 @@ class Bubble extends React.Component{
 const domContainer = document.querySelector('#root');
 ReactDOM.render(e(Bubble), domContainer);
 
-
+//what will print in console? pls write your answer here
 
   </script>
   
